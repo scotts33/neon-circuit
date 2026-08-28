@@ -1,0 +1,15 @@
+{
+  "name": "neo-kart",
+  "version": "2026.1.0",
+  "description": "Neon Circuit 2026 — browser arcade kart racer (Mario Kart–style mechanics, original theme)",
+  "private": true,
+  "scripts": {
+    "test": "node tests/race-engine.test.js",
+    "test:load": "node tests/script-load-check.js",
+    "test:launch": "node tests/launch-check.js",
+    "test:all": "node tests/race-engine.test.js && node tests/script-load-check.js && node tests/safari-viewport.test.js",
+    "start": "python3 -m http.server 8765",
+    "share": "node scripts/build-share.js"
+  },
+  "main": "js/race-engine.js"
+}
