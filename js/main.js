@@ -13,12 +13,14 @@
   var Audio = root.NeoKartAudio;
   var Storage = root.NeoKartStorage;
 
-  var ASSET_VER = "republish-20260827";
+  var ASSET_VER = "republish-20260827b";
   var THREE_CDN = "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js";
   var HEAVY_SCRIPTS = [
     "vendor/three.min.js",
     "js/vehicles.js?v=" + ASSET_VER,
     "js/fx.js?v=" + ASSET_VER,
+    "js/render3d.p0.js?v=" + ASSET_VER,
+    "js/render3d.p1.js?v=" + ASSET_VER,
     "js/render3d.js?v=" + ASSET_VER,
   ];
 
@@ -941,7 +943,7 @@
                   ? "3RD"
                   : (pr.place || "?") + "TH");
           var msg = state.message || "FINISHED " + placeLabel;
-          var rematchHint = null;
+          var, rematchHint = null;
           var rewards = null;
           if (Storage && state.track && Storage.applyFinishRewards) {
             rewards = Storage.applyFinishRewards(state.track.id, state.time, {
