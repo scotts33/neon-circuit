@@ -42,6 +42,8 @@
       -webkit-font-smoothing: antialiased;
     }
     body {
+      /* Lock to the visual viewport so a collapsing Safari toolbar
+         cannot expose the default gray chrome strip. */
       position: fixed;
       inset: 0;
       width: 100%;
@@ -72,6 +74,7 @@
       display: block;
       outline: none;
     }
+    /* Soft VR lens edge */
     #game-wrap::after {
       content: "";
       position: absolute;
@@ -80,6 +83,7 @@
       background: radial-gradient(ellipse at center, transparent 62%, rgba(40, 70, 100, 0.14) 100%);
       z-index: 2;
     }
+
     .top-bar {
       position: absolute;
       top: 0; left: 0; right: 0;
@@ -123,6 +127,7 @@
       transform: translateY(-1px);
       box-shadow: 0 12px 36px rgba(30, 50, 80, 0.16);
     }
+
     #hud { position: absolute; inset: 0; z-index: 15; pointer-events: none; }
     #hud-standings {
       position: absolute;
@@ -146,8 +151,14 @@
       font-weight: 500;
     }
     #hud-standings .row.you { color: var(--accent); font-weight: 700; }
-    #hud-standings .place { width: 1.15rem; color: var(--accent2); font-weight: 700; }
+    #hud-standings .place {
+      width: 1.15rem;
+      color: var(--accent2);
+      font-weight: 700;
+    }
     #hud-standings .lap { margin-left: auto; font-size: 0.72rem; opacity: 0.75; }
+
+    /* Live circuit map — track outline + racer positions */
     #hud-minimap-wrap {
       position: absolute;
       left: 20px;
@@ -183,9 +194,13 @@
       gap: 6px 10px;
       font-weight: 500;
     }
-    #hud-minimap-legend span b { font-weight: 700; color: var(--text); }
+    #hud-minimap-legend span b {
+      font-weight: 700;
+      color: var(--text);
+    }
     #hud-minimap-legend .you b { color: var(--accent); }
     #hud-minimap-legend .traf b { color: #c07020; }
+
     .hud-right {
       position: absolute;
       top: calc(72px + env(safe-area-inset-top, 0px));
@@ -211,7 +226,11 @@
       margin-bottom: 4px;
       font-weight: 600;
     }
-    .item-chip { font-size: 1rem; font-weight: 700; color: var(--muted); }
+    .item-chip {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
     .item-chip.has { color: var(--accent); }
     .item-chip.spin {
       color: #c07000;
@@ -241,6 +260,7 @@
       border-radius: 99px;
       transition: width 0.08s linear;
     }
+
     .controls-hint {
       position: absolute;
       bottom: calc(20px + env(safe-area-inset-bottom, 0px));
@@ -258,6 +278,8 @@
       white-space: nowrap;
     }
     .controls-hint b { color: var(--text); font-weight: 700; }
+
+    /* Style / addiction HUD */
     #hud-style-toast {
       position: absolute;
       top: 28%;
@@ -267,17 +289,24 @@
       font-weight: 900;
       letter-spacing: 0.06em;
       color: #fff;
-      text-shadow: 0 0 24px rgba(43, 125, 233, 0.85), 0 4px 18px rgba(0, 0, 0, 0.35);
+      text-shadow:
+        0 0 24px rgba(43, 125, 233, 0.85),
+        0 4px 18px rgba(0, 0, 0, 0.35);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.12s, transform 0.12s;
       z-index: 18;
       white-space: nowrap;
     }
-    #hud-style-toast.show { opacity: 1; transform: translateX(-50%) scale(1); }
+    #hud-style-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
     #hud-style-toast.fever {
       color: #ffef5a;
-      text-shadow: 0 0 28px rgba(255, 180, 40, 0.95), 0 4px 18px rgba(0, 0, 0, 0.4);
+      text-shadow:
+        0 0 28px rgba(255, 180, 40, 0.95),
+        0 4px 18px rgba(0, 0, 0, 0.4);
     }
     #hud-style-score {
       position: absolute;
@@ -300,7 +329,10 @@
       z-index: 17;
     }
     #hud-style-score.show { opacity: 1; }
-    #hud-style-score.fever { color: #c07000; border-color: rgba(255, 180, 40, 0.6); }
+    #hud-style-score.fever {
+      color: #c07000;
+      border-color: rgba(255, 180, 40, 0.6);
+    }
     #hud-rival {
       position: absolute;
       top: calc(72px + env(safe-area-inset-top, 0px));
@@ -375,6 +407,7 @@
       0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.85; }
       50% { transform: translateX(-50%) scale(1.06); opacity: 1; }
     }
+
     #hud-results {
       position: absolute;
       inset: 0;
@@ -460,7 +493,10 @@
       z-index: 19;
       transition: opacity 0.12s, transform 0.12s;
     }
-    #hud-place-flash.show { opacity: 1; transform: translateX(-50%) scale(1); }
+    #hud-place-flash.show {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
     #hud-countdown {
       position: absolute;
       top: 42%;
@@ -470,23 +506,34 @@
       font-weight: 900;
       letter-spacing: 0.08em;
       color: #fff;
-      text-shadow: 0 0 40px rgba(43, 125, 233, 0.85), 0 8px 28px rgba(0, 0, 0, 0.35);
+      text-shadow:
+        0 0 40px rgba(43, 125, 233, 0.85),
+        0 8px 28px rgba(0, 0, 0, 0.35);
       opacity: 0;
       pointer-events: none;
       z-index: 25;
       transition: opacity 0.1s, transform 0.12s;
     }
-    #hud-countdown.show { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    #hud-countdown.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
     #hud-countdown.go {
       color: #34c759;
-      text-shadow: 0 0 48px rgba(52, 199, 89, 0.9), 0 8px 28px rgba(0, 0, 0, 0.35);
+      text-shadow:
+        0 0 48px rgba(52, 199, 89, 0.9),
+        0 8px 28px rgba(0, 0, 0, 0.35);
     }
     .course-card.locked {
       opacity: 0.55;
       cursor: not-allowed;
       filter: grayscale(0.35);
     }
-    .course-card.locked:hover { transform: none; box-shadow: var(--shadow); }
+    .course-card.locked:hover {
+      transform: none;
+      box-shadow: var(--shadow);
+    }
+
     #level-select {
       position: absolute;
       inset: 0;
@@ -497,7 +544,9 @@
       flex-direction: column;
       gap: 18px;
       padding: 28px;
-      background: radial-gradient(ellipse at 50% 20%, rgba(255,255,255,0.5), transparent 55%), rgba(160, 200, 230, 0.45);
+      background:
+        radial-gradient(ellipse at 50% 20%, rgba(255,255,255,0.5), transparent 55%),
+        rgba(160, 200, 230, 0.45);
       backdrop-filter: blur(12px);
     }
     #level-select.show { display: flex; }
@@ -555,7 +604,11 @@
       font-weight: 700;
       margin-bottom: 6px;
     }
-    .course-card .name { font-size: 1.05rem; font-weight: 750; margin-bottom: 8px; }
+    .course-card .name {
+      font-size: 1.05rem;
+      font-weight: 750;
+      margin-bottom: 8px;
+    }
     .course-card .blurb {
       font-size: 0.78rem;
       color: var(--muted);
@@ -571,6 +624,7 @@
       text-transform: uppercase;
       font-weight: 700;
     }
+
     #file-hint {
       display: none;
       position: absolute;
@@ -587,6 +641,7 @@
       max-width: 90%;
       box-shadow: var(--shadow);
     }
+
     .vr-frame {
       position: absolute;
       inset: 12px;
@@ -626,12 +681,14 @@
     #speed-lines {
       position: absolute; inset: 0; pointer-events: none; z-index: 12;
       opacity: 0; transition: opacity 0.12s;
-      background: repeating-linear-gradient(90deg, transparent 0 38px, rgba(255,255,255,0.04) 38px 40px), radial-gradient(ellipse at center, transparent 55%, rgba(255,255,255,0.12) 100%);
+      background:
+        repeating-linear-gradient(90deg, transparent 0 38px, rgba(255,255,255,0.04) 38px 40px),
+        radial-gradient(ellipse at center, transparent 55%, rgba(255,255,255,0.12) 100%);
     }
     #speed-lines.hot { opacity: 1; }
-    #speed-lines.boost {
-      opacity: 1;
-      background: repeating-linear-gradient(90deg, transparent 0 28px, rgba(100,220,255,0.07) 28px 30px), radial-gradient(ellipse at center, transparent 50%, rgba(100,200,255,0.18) 100%);
+    #speed-lines.boost { opacity: 1; background:
+      repeating-linear-gradient(90deg, transparent 0 28px, rgba(100,220,255,0.07) 28px 30px),
+      radial-gradient(ellipse at center, transparent 50%, rgba(100,200,255,0.18) 100%);
     }
     @keyframes pulse { from { transform: translateX(-50%) scale(1); } to { transform: translateX(-50%) scale(1.06); } }
     .drift-panel .speed-track { height: 6px; background: rgba(0,0,0,0.08); border-radius: 4px; overflow: hidden; margin-top: 4px; }
@@ -677,6 +734,7 @@
     .settings-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 14px; align-items: center; }
     .settings-row label { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.06em; color: var(--muted); }
     .settings-row select, .settings-row input[type=range] { font-size: 0.75rem; }
+
     #load-overlay {
       position: absolute;
       inset: 0;
@@ -699,6 +757,8 @@
       letter-spacing: 0.08em;
       color: var(--text);
     }
+
+    /* Touch / mobile virtual controls */
     #touch-controls {
       position: absolute;
       inset: 0;
@@ -792,7 +852,9 @@
       box-shadow: var(--shadow);
     }
     #hud-taunt.show { opacity: 1; }
-    @media (pointer: fine) { #touch-controls.show.force { display: block; } }
+    @media (pointer: fine) {
+      #touch-controls.show.force { display: block; }
+    }
     @media (pointer: coarse), (max-width: 900px) {
       #touch-controls.show { display: block; }
       .controls-hint { font-size: 0.58rem; max-width: 92%; white-space: normal; text-align: center; }
@@ -807,6 +869,7 @@
       <div id="speed-lines" aria-hidden="true"></div>
     </div>
     <div id="load-overlay" aria-live="polite"><div class="card msg">Loading…</div></div>
+
     <div class="top-bar">
       <div>
         <div class="brand">NEON <span>CIRCUIT</span> 2026</div>
@@ -816,6 +879,7 @@
         <button type="button" class="ghost" id="btn-courses">COURSES</button>
       </div>
     </div>
+
     <div id="hud">
       <div id="hud-standings"></div>
       <div id="hud-minimap-wrap">
@@ -888,6 +952,7 @@
         </div>
       </div>
     </div>
+
     <div id="pause-overlay">
       <div class="card">
         <h2>PAUSED</h2>
@@ -897,6 +962,7 @@
         <button type="button" class="ghost" id="btn-pause-courses">COURSES</button>
       </div>
     </div>
+
     <div id="tips-panel">
       <h3>QUICK TIPS</h3>
       <ul>
@@ -907,6 +973,7 @@
       </ul>
       <button type="button" class="ghost" id="tips-close">GOT IT</button>
     </div>
+
     <div id="level-select" class="show">
       <h1>NEON CIRCUIT</h1>
       <p class="tagline">
@@ -960,15 +1027,18 @@
       </div>
       <div id="course-grid"></div>
     </div>
+
     <div id="file-hint"></div>
   </div>
-  <script src="js/track.js?v=republish-20260827"></script>
-  <script src="js/race-engine.js?v=republish-20260827"></script>
-  <script src="js/input.js?v=republish-20260827"></script>
-  <script src="js/audio.js?v=republish-20260827"></script>
-  <script src="js/storage.js?v=republish-20260827"></script>
-  <script src="js/render.js?v=republish-20260827"></script>
-  <script src="js/main.js?v=republish-20260827"></script>
+
+  <!-- Critical path only — Three.js / vehicles / FX / render3d load on first race -->
+  <script src="js/track.js?v=republish-20260827b"></script>
+  <script src="js/race-engine.js?v=republish-20260827b"></script>
+  <script src="js/input.js?v=republish-20260827b"></script>
+  <script src="js/audio.js?v=republish-20260827b"></script>
+  <script src="js/storage.js?v=republish-20260827b"></script>
+  <script src="js/render.js?v=republish-20260827b"></script>
+  <script src="js/main.js?v=republish-20260827b"></script>
   <script>
     (function () {
       var hint = document.getElementById("file-hint");
@@ -977,6 +1047,7 @@
         hint.textContent = "Game scripts failed to load. Serve this folder over HTTP.";
         return;
       }
+      // Menu paints immediately; 3D stack lazy-loads on course pick (and idles in bg).
       window.__neoKartGame = NeoKart.boot({ numKarts: 4 });
     })();
   </script>
