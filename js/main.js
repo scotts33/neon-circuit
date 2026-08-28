@@ -943,7 +943,7 @@
                   ? "3RD"
                   : (pr.place || "?") + "TH");
           var msg = state.message || "FINISHED " + placeLabel;
-          var, rematchHint = null;
+          var rematchHint = null;
           var rewards = null;
           if (Storage && state.track && Storage.applyFinishRewards) {
             rewards = Storage.applyFinishRewards(state.track.id, state.time, {
